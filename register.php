@@ -1,11 +1,8 @@
 <?php
 
 
-include 'connectDB.php';
+	require_once 'includes/global.inc.php';
 
-// Start the session (DON'T FORGET!!)
-session_start();
-	
 	$emailError="";
 	$passwordError="";
 
@@ -39,38 +36,57 @@ session_start();
 		return $data;
 	}
 
-		// Search for a combination
-	
-	$q1 = "SELECT COUNT(user_ID) FROM login WHERE email = '" . $email . "'";
-	
-	$query = mysql_query($q1) or die(mysql_error());
 
-
-        list($count) = mysql_fetch_row($query);
-
-        if($count == 0) {
-
-            // Email is free!
-            $q2 = "INSERT INTO login(email,password) VALUES ('$email', '$password')";
-            //echo $query;
-            $query=mysql_query($q2) or die(mysql_error());
-
-            echo 'You are successfully registered!<br>';
-        ?>
-
-        <a href="login.html">Please Click Here to Login</a>
-
-        <?php
-        } else {
-
-            // Username or Email already taken
-            echo 'Email address already taken!';
-
-        }
 
 ?>
 
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            .label{
+                
+                width:30%;
+                text-align: right;
+            }
+            .input{
+                display:block;
+                width:70%;
+                text-align: left;
+            }
+            .error{
+                color:red;
+                text-align:left;
+            }
 
-
-
-
+        </style>
+    </head>
+    <body>
+        <form action="/register.php" method="post">
+            <div id="class-label">
+                <span class="label">
+                    <label for="email">Email Id: </label>
+                </span>
+                <span class="input">
+                    <input id="email" type="text" name="email" value="">
+                </span>
+                <span class="error">* <?php echo $emailError;?> </span>
+            </div>
+            <br>
+            <div id="class-label">
+                <span class="label">
+                    <label for="password">Password:</label>
+                </span>
+                <span class="input">        
+                    <input id="password" type="password" name="password" value="">
+                </span>
+                <span class="error">* <?php echo $passwordError;?></span>
+            </div>
+            <br>
+            <input type="submit" name="submit" value="Register!">
+            
+        </form>
+        
+    </body>
+</html>

@@ -1,7 +1,6 @@
 <?php
 
-// Start session
-session_start();
+require_once 'includes/global.inc.php';
 
 // Check if user is logged in
 if(isset($_SESSION['user'])) {
