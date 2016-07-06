@@ -9,8 +9,10 @@ class User{
 
 		$passwordMd5 = md5($password);
 		// Search for a combination
-		$query = mysql_query("SELECT * FROM Login WHERE email = '$email' AND password = '$passwordMd5'");
+		$q = "SELECT * FROM Login WHERE Email = '$email' AND Password = '$passwordMd5'";
+		$query = mysql_query($q);
 		
+		echo $q; 
 		list($user) = mysql_fetch_row($query);
 
 		// If the result is empty no combination was found
@@ -40,6 +42,7 @@ class User{
 
 
         list($count) = mysql_fetch_row($query);
+
 
         if($count == 0) {
 

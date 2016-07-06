@@ -7,6 +7,8 @@
 
 	$email = "";
 	$password = "";
+	$msg = $_GET['msg'];
+		
 	// That's nice, user wants to login. But lets check if user has filled in all information
 	if(isset($_POST["submit"]))
 	{
@@ -80,13 +82,18 @@
                 color:red;
                 text-align:left;
             }
+            .success{
+            	color: green;
+            	text-align: left;
+            }
 
         </style>
     </head>
     <body>
-        <form action="login.php" method="post">
+        <form action="/login.php" method="post">
         	<div class="class-label">
         		<span class="error"><?php echo $error;?></span>
+        		<span class="success"><?php echo $msg;?></span>
         	</div>
         	
             <div class="class-label">
