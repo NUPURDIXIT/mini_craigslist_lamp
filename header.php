@@ -12,7 +12,7 @@ if(isset($_SESSION['user'])) {
 
 } else {
     echo 'You are not logged in. <br>';
-    echo '<a href="../login.html">Login</a>';
+    echo '<a href="../login.php">Login</a>';
 }
 
 echo '<p></p>';
