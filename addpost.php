@@ -4,7 +4,9 @@ require_once 'includes/global.inc.php';
 if(isset($_POST["submit"])){
 
 	$post = new Post();
-	$post->createPost($_POST);
+	if($postId = $post->createPost($_POST)){
+		header("location: viewpost.php?id=$postId&preview=1");
+	}
 }
 
 ?>

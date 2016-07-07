@@ -20,6 +20,8 @@ create table Login(
 	Password varchar(60)
 );
 
+alter table Posts add column Published tinyint default 0;
+
 
 
 Insert into Category values(20,'Automobile');

@@ -26,11 +26,42 @@ class Post{
 		'$image1', '$image2', '$image3', '$image4', '$subCatId', '$locationId')";
 
 		mysql_query($sql);
-		
+
+		return mysql_insert_id();
+
 	}
 
-	function viewPost($id){
+	function getPost($postId, $isPreview){
 
+		$sql = "select * from Posts where PostId = '$postId' ";
+
+		if($isPreview){
+			$sql .= " and Published = 0";
+		}
+
+		$query = mysql_query($sql);
+
+		$result = mysql_fetch_array($query, MYSQL_ASSOC);
+
+		for($i=1; $i<=4; $i++){
+			if($result["Image_$i"]){
+				$url1 = "images/".$postId."_image$i.jpeg";
+				file_put_contents($url1, $result["Image_$i"]);
+				$result["images"][] = $url1;
+			}			
+		}
+
+
+		//print_r($result);
+		//exit;
+
+		return $result;
+	}
+
+	function publishPost($postId){
+		$sql = "UPDATE Posts set Published = 1 where PostId = '$postId'";
+
+		mysql_query($sql);
 	}
 
 	function searchByCategorySubCategory(){
