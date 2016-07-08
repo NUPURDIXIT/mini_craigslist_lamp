@@ -64,16 +64,63 @@ class Post{
 		mysql_query($sql);
 	}
 
-	function searchByCategorySubCategory(){
+	function search(){
 
 	}
 
-	function searchByCountry(){
+	function getCategoriesLocations(){
+		$resultArray = array();
 
-	}
+		$sql1 = "select s.SubCategory_ID subCategoryId, s.SubCategoryName subCategoryName, c.Category_ID categoryId, c.CategoryName categoryName 
+		from SubCategory s, Category c 
+		where c.Category_ID = s.Category_ID;";
 
-	function searchByCountryLocation(){
+		$result1 = mysql_query($sql1);
 
+		while ($row = mysql_fetch_array($result1, MYSQL_ASSOC)) {
+ 		   
+ 		   $temp = array();
+ 		   $temp['text'] = $row['subCategoryName'];
+ 		   $temp['id'] = $row['subCategoryId'];
+ 		   $temp['idname'] = 'subCategoryId';
+
+ 		   $resultArray[$row['categoryName']][] = $temp;
+
+
+		}
+
+		$sql2 = "select Region_ID regionId, RegionName regionName from Region;";
+
+		$result2 = mysql_query($sql2);
+		while ($row = mysql_fetch_array($result2, MYSQL_ASSOC)) {
+ 		   
+ 		   $temp = array();
+ 		   $temp['text'] = $row['regionName'];
+ 		   $temp['id'] = $row['regionId'];
+ 		   $temp['idname'] = 'regionId';
+
+ 		   $resultArray['Country'][] = $temp;
+
+
+		}
+
+		$sql3 = "select Location_ID locationId, LocationName locationName from Location;";
+
+		$result3 = mysql_query($sql3);
+		while ($row = mysql_fetch_array($result3, MYSQL_ASSOC)) {
+ 		   
+ 		   $temp = array();
+ 		   $temp['text'] = $row['locationName'];
+ 		   $temp['id'] = $row['locationId'];
+ 		   $temp['idname'] = 'locationId';
+
+ 		   $resultArray['Locations'][] = $temp;
+
+
+		}
+
+
+		return $resultArray;
 	}
 
 	function _getImageData($path){
