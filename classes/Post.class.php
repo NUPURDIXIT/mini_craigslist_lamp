@@ -64,7 +64,35 @@ class Post{
 		mysql_query($sql);
 	}
 
-	function search(){
+	function search($data){
+
+		$sql = "select p.* from Posts p where 1 =1 ";
+
+		if($regionId = $data['regionId']){
+			$sql .= "and p.Location_ID in (SELECT l.Location_ID from Location l where l.Region_ID = $regionId) ";
+		}
+
+		if($locationId = $data['locationId']){
+			$sql .= "and p.Location_ID = $locationId ";	
+		}
+
+		if($subCategoryId = $data['subCategoryId']){
+			$sql .= " and p.SubCategory_ID = $subCategoryId";
+		}
+
+		if($title = $data['search']){
+			$sql .= " and p.Title like '%$title%'";
+		}
+
+		$return = array();
+
+		$result = mysql_query($sql);
+		while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+			$return[] = $row;
+		}
+
+		return $return;
+
 
 	}
 
