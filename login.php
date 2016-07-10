@@ -3,8 +3,6 @@
 
 	require_once 'includes/global.inc.php';
 	
-	$error = "";
-
 	$email = "";
 	$password = "";
 	$msg = $_GET['msg'];
@@ -12,51 +10,25 @@
 	// That's nice, user wants to login. But lets check if user has filled in all information
 	if(isset($_POST["submit"]))
 	{
-		/*if(empty($_POST["email"])) {
-			$emailError="Email is required";
-		}
-		else{
-			$email=test_input($_POST["email"]);
-			if(!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)){
-				$emailError="Invalid Email Format";
-			}
-		}*/
 
 
+        $validation = new Validation();
+        $errors = $validation->validateLoginForm($_POST);
 
-		/*if(empty($_POST["password"])) {
-			$passwordError="Password is required";
-		
-		
-		} 
-		else {
+        if(!$errors){
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
-			$password = md5($_POST["password"]);
-		}*/
+            $user = new User();
+            if($user->login($email, $password)){
+                header('location: home.php');
+            }else{
+                $errors['email'] = "Login credentials are incorrect.";
+            }
 
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-
-		$user = new User();
-		if($user->login($email, $password)){
-			header('location: home.php');
-		}else{
-			$error = "Login credentials are incorrect.";
-		}
+        }        
 
 	}
-
-	function test_input($data) {
-		$data = trim($data);
-		$data = stripslashes($data);
-		$data = htmlspecialchars($data);
-		return $data;
-	}
-
-
-			
-	
-	
 
 ?>
 
@@ -66,28 +38,7 @@
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style>
-            .label{
-                
-                width:30%;
-                text-align: right;
-            }
-            .input{
-                display:block;
-                width:70%;
-                text-align: left;
 
-            }
-            .error{
-                color:red;
-                text-align:left;
-            }
-            .success{
-            	color: green;
-            	text-align: left;
-            }
-
-        </style>
     </head>
     <body>
         <?php include("header.php");?>
@@ -96,7 +47,6 @@
                 <fieldset>
                     <legend>Login</legend>
                     <div class="class-label">
-                        <span class="error"><?php echo $error;?></span>
                         <span class="success"><?php echo $msg;?></span>
                     </div>
                     
@@ -107,6 +57,7 @@
                         <span class="input">
                             <input id="email" type="text" name="email" value="">
                         </span>
+                        <span class="error"><?=$errors['email']?> </span>
                         
                     </div>
                   
@@ -117,6 +68,7 @@
                         <span class="input">        
                             <input id="password" type="password" name="password" value="">
                         </span>
+                        <span class="error"><?=$errors['password']?> </span>
                     </div>
                     <input type="submit" name="submit" value="Login!">
                 </fieldset>

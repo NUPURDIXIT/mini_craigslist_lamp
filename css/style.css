@@ -1,0 +1,45 @@
+th{text-align:left}
+tr td{padding:2px 185px 2px 2px}
+table{border-collapse:collapse}
+div.column{
+	float: left;
+	width: 100px;
+	padding: 10px; 20px;
+}
+div.colh{
+	font-weight: bold;
+}
+div#content, div#footer{
+	width: 100%;
+	display: block;
+}
+div.clear{
+	clear: both;
+}
+.label{
+    
+    width:30%;
+    text-align: right;
+}
+.input{
+    display:block;
+    width:70%;
+    text-align: left;
+
+}
+.error{
+    color:red;
+    text-align:left;
+}
+.success{
+	color: green;
+	text-align: left;
+}
+img{
+	width: 200px;
+}
+div.searchTile{
+	padding: 20px;
+	float: left;
+	width: 30%;
+}

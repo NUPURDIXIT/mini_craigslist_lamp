@@ -44,7 +44,8 @@ create table Posts(
 	User_ID int unsigned not null,
 	SubCategory_ID int unsigned not null,
 	Location_ID int unsigned not null,	
-	Title char(20),price decimal,
+	Title char(20),
+	price decimal,
 	Description text,
 	Email varchar(60) not null,
 	Agreement text,
@@ -53,7 +54,7 @@ create table Posts(
 	Image_2 LONGBLOB ,
 	Image_3 LONGBLOB ,
 	Image_4 LONGBLOB ,
-	Published tinyint,
+	Published tinyint default 0,
 	FOREIGN KEY fk_user_id(User_ID) REFERENCES Login(User_ID),
 	FOREIGN KEY fk_subcategory_id(SubCategory_ID) REFERENCES SubCategory(SubCategory_ID),
 	FOREIGN KEY fk_location_id(Location_ID) REFERENCES Location(Location_ID)

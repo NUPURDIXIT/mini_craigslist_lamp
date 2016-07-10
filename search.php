@@ -10,9 +10,9 @@ $posts = $postObj->search($_GET);
 <?php
 foreach ($posts as $post) {
 ?>
-	<div class="row">
-		<img src="<?=$post['image']?>" width="100">
-		<a href="viewpost.php?id=<?=$post['PostId']?>"><?=$post['Title']?></a>
+	<div class="searchTile">
+		<img src="<?=$post['image']?>">
+		<p><a href="viewpost.php?id=<?=$post['PostId']?>"><?=$post['Title']?></a></p>
 		<p><?=$post['Description']?></p>
 	</div>
 <?php

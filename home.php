@@ -9,26 +9,7 @@ $homeData = $post->getCategoriesLocations();
 
 <html>
 <head>
-	<style>
-	th{text-align:left}
-	tr td{padding:2px 185px 2px 2px}
-	table{border-collapse:collapse}
-	div.column{
-		float: left;
-		width: 100px;
-		padding: 10px; 20px;
-	}
-	div.colh{
-		font-weight: bold;
-	}
-	div#content, div#footer{
-		width: 100%;
-		display: block;
-	}
-	div.clear{
-		clear: both;
-	}
-	</style>
+	
 </head>
 <body>
 <?php include("header.php");?>

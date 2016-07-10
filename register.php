@@ -13,48 +13,25 @@
 	// That's nice, user wants to login. But lets check if user has filled in all information
 	if(isset($_POST['submit'])){
 
-		if(empty($_POST["email"])){
-			$emailError="Email is required";
-			$error = true;
-		}
-		else{
-			$email=test_input($_POST["email"]);
-			if(!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)){
-				$emailError="Invalid Email Format";
-				$error = true;
-			}
-		}
+        $validation = new Validation();
+        $errors = $validation->validateRegisterForm($_POST);
 
-		if(empty($_POST["password"])) {
-			$passwordError="Password is required";
-			$error = true;
-		} 
-		else {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        
+        if(!$errors){
+            $user = new User();
+            if(!$error){
+                if($user->register($email, $password)){
+                    header('location: login.php?msg=Registration+successful');
+                }else{
+                    $errors['email']= "Email is already registered";
+                }           
+            }            
+        }
 
-			$password = $_POST["password"];
-		}
-
-		$user = new User();
-		if(!$error){
-			if($user->register($email, $password)){
-				header('location: /login.php?msg=Registration+successful');
-			}else{
-				$emailError = "Email is already registered";
-			}			
-		}
 		
 	}
-
-
-
-	function test_input($data) {
-		$data = trim($data);
-		$data = stripslashes($data);
-		$data = htmlspecialchars($data);
-		return $data;
-	}
-
-
 
 ?>
 
@@ -62,23 +39,7 @@
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style>
-            .label{
-                
-                width:30%;
-                text-align: right;
-            }
-            .input{
-                display:block;
-                width:70%;
-                text-align: left;
-            }
-            .error{
-                color:red;
-                text-align:left;
-            }
-
-        </style>
+       
     </head>
     <body>
         <?php include("header.php");?>
@@ -92,7 +53,7 @@
                     <span class="input">
                         <input id="email" type="text" name="email" value="<?=$email?>">
                     </span>
-                    <span class="error"><?php echo $emailError;?> </span>
+                    <span class="error"><?=$errors['email']?> </span>
                 </div>
                 <br>
                 <div id="class-label">
@@ -102,7 +63,7 @@
                     <span class="input">        
                         <input id="password" type="password" name="password" value="">
                     </span>
-                    <span class="error"><?php echo $passwordError;?></span>
+                    <span class="error"><?=$errors['password']?></span>
                 </div>
                 <br>
                 <input type="submit" name="submit" value="Register!">

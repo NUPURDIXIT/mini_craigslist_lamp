@@ -17,12 +17,13 @@ class Post{
 		$image4 = $this->_getImageData($_FILES["image4"]["tmp_name"]);
 		$subCatId = $data['subCategoryId'];
 		$locationId = $data['locationId'];
+		$userId = $_SESSION['user']['User_ID'];
 
-		$sql = "INSERT INTO `Posts` (`Title`, 
+		$sql = "INSERT INTO `Posts` (`Title`, `User_ID`, 
 			`price`, `Description`, `Email`, `Agreement`, 
 			`Image_1`, `Image_2`, `Image_3`, 
 			`Image_4`, `SubCategory_ID`, `Location_ID`) 
-		VALUES ('$title', '$price', '$desc', '$email', '$agreement',
+		VALUES ('$title', '$userId', '$price', '$desc', '$email', '$agreement',
 		'$image1', '$image2', '$image3', '$image4', '$subCatId', '$locationId')";
 
 		mysql_query($sql);
@@ -103,6 +104,32 @@ class Post{
 
 	}
 
+
+	function getSubCategories(){
+		$sql = "select s.SubCategory_ID subCategoryId, s.SubCategoryName subCategoryName
+		from SubCategory s;";
+
+		$result = mysql_query($sql);
+		$return = array();
+		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+			$return[] = $row;
+		}
+
+		return $return;
+	}
+
+	function getLocations(){
+		$sql = "select Location_ID locationId, LocationName locationName from Location;";
+
+		$result = mysql_query($sql);
+		$return = array();
+		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+			$return[] = $row;
+
+		}
+		return $return;
+	}
+
 	function getCategoriesLocations(){
 		$resultArray = array();
 
@@ -157,6 +184,7 @@ class Post{
 
 		return $resultArray;
 	}
+
 
 	function _getImageData($path){
 		return mysql_real_escape_string(file_get_contents($path));

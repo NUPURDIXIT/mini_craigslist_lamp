@@ -7,6 +7,7 @@ require_once 'includes/global.inc.php';
 //     $user = $_SESSION['user'];
 // }
 ?>
+<link rel="stylesheet" href="css/style.css">
 <div class="header">
 	<p><a href="home.php">Home</a></p>
 	<?php
