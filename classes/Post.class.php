@@ -45,9 +45,8 @@ class Post{
 
 		for($i=1; $i<=4; $i++){
 			if($result["Image_$i"]){
-				$url1 = "images/".$postId."_image$i.jpeg";
-				file_put_contents($url1, $result["Image_$i"]);
-				$result["images"][] = $url1;
+				
+				$result["images"][] = $this->_getImageUrl($i, $result, $postId);
 			}			
 		}
 
@@ -56,6 +55,13 @@ class Post{
 		//exit;
 
 		return $result;
+	}
+
+	function _getImageUrl($i, $result, $postId){
+		$url1 = "images/".$postId."_image$i.jpeg";
+		file_put_contents($url1, $result["Image_$i"]);
+
+		return $url1;
 	}
 
 	function publishPost($postId){
@@ -88,6 +94,7 @@ class Post{
 
 		$result = mysql_query($sql);
 		while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+			$row['image'] = $this->_getImageUrl(1, $row, $row['PostId']);
 			$return[] = $row;
 		}
 

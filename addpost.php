@@ -10,9 +10,9 @@ if(isset($_POST["submit"])){
 }
 
 ?>
+<?php include("header.php");?>
 <div>
-<div>
-<form action="/addpost.php" method="POST" enctype="multipart/form-data">
+<form action="addpost.php" method="POST" enctype="multipart/form-data">
 	<div>
 		<label>Sub-Category:</label>
 		<select name="subCategoryId">
@@ -78,13 +78,5 @@ if(isset($_POST["submit"])){
 	</div>
 </form>
 </div>
-</div>
-
-	
-	
-	
-		
-		
-
-		
-	</body></html>
+<?php include("footer.php");?>
+</body></html>

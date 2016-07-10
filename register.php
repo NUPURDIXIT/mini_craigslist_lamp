@@ -81,30 +81,34 @@
         </style>
     </head>
     <body>
-        <form action="/register.php" method="post">
-            <div id="class-label">
-                <span class="label">
-                    <label for="email">Email Id: </label>
-                </span>
-                <span class="input">
-                    <input id="email" type="text" name="email" value="<?=$email?>">
-                </span>
-                <span class="error"><?php echo $emailError;?> </span>
-            </div>
-            <br>
-            <div id="class-label">
-                <span class="label">
-                    <label for="password">Password:</label>
-                </span>
-                <span class="input">        
-                    <input id="password" type="password" name="password" value="">
-                </span>
-                <span class="error"><?php echo $passwordError;?></span>
-            </div>
-            <br>
-            <input type="submit" name="submit" value="Register!">
-            
+        <?php include("header.php");?>
+        <form action="register.php" method="post">
+            <fieldset>
+                <legend>Register</legend>        
+                <div id="class-label">
+                    <span class="label">
+                        <label for="email">Email Id: </label>
+                    </span>
+                    <span class="input">
+                        <input id="email" type="text" name="email" value="<?=$email?>">
+                    </span>
+                    <span class="error"><?php echo $emailError;?> </span>
+                </div>
+                <br>
+                <div id="class-label">
+                    <span class="label">
+                        <label for="password">Password:</label>
+                    </span>
+                    <span class="input">        
+                        <input id="password" type="password" name="password" value="">
+                    </span>
+                    <span class="error"><?php echo $passwordError;?></span>
+                </div>
+                <br>
+                <input type="submit" name="submit" value="Register!">
+            </fieldset>
         </form>
-        
+        <a href="login.php">Already Registered?</a>
+        <?php include("footer.php");?>
     </body>
 </html>

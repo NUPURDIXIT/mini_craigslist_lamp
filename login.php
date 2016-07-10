@@ -39,7 +39,7 @@
 
 		$user = new User();
 		if($user->login($email, $password)){
-			header('location: header.php');
+			header('location: home.php');
 		}else{
 			$error = "Login credentials are incorrect.";
 		}
@@ -90,35 +90,42 @@
         </style>
     </head>
     <body>
-        <form action="/login.php" method="post">
-        	<div class="class-label">
-        		<span class="error"><?php echo $error;?></span>
-        		<span class="success"><?php echo $msg;?></span>
-        	</div>
-        	
-            <div class="class-label">
-                <span class="label">
-                    <label for="email">Email Id: </label>
-                </span>
-                <span class="input">
-                    <input id="email" type="text" name="email" value="">
-                </span>
+        <?php include("header.php");?>
+        <div class="content">
+            <form action="login.php" method="post">
+                <fieldset>
+                    <legend>Login</legend>
+                    <div class="class-label">
+                        <span class="error"><?php echo $error;?></span>
+                        <span class="success"><?php echo $msg;?></span>
+                    </div>
+                    
+                    <div class="class-label">
+                        <span class="label">
+                            <label for="email">Email Id: </label>
+                        </span>
+                        <span class="input">
+                            <input id="email" type="text" name="email" value="">
+                        </span>
+                        
+                    </div>
+                  
+                    <div class="class-label">
+                        <span class="label">
+                            <label for="password">Password:</label>
+                        </span>
+                        <span class="input">        
+                            <input id="password" type="password" name="password" value="">
+                        </span>
+                    </div>
+                    <input type="submit" name="submit" value="Login!">
+                </fieldset>
+
                 
-            </div>
-          
-            <div class="class-label">
-                <span class="label">
-                    <label for="password">Password:</label>
-                </span>
-                <span class="input">        
-                    <input id="password" type="password" name="password" value="">
-                </span>
-            </div>
-          
-            <input type="submit" name="submit" value="Login!">
-            
-        </form>
-        <a href="/register.php">Not Registered Yet?</a>
+            </form>
+            <a href="register.php">Not Registered Yet?</a>
+        </div>
+        <?php include("footer.php");?>
         
     </body>
 </html>

@@ -31,11 +31,18 @@ $homeData = $post->getCategoriesLocations();
 	</style>
 </head>
 <body>
-<div class="header">
-	<p><a href="/addpost.php">New Post</a></p>
-	<p><a href="/login.php">Login</a></p>
-</div>
+<?php include("header.php");?>
 <div id="content">
+	<p>Search:</p>
+	<div>
+		<form action="search.php">
+		<input type="text" name="search">
+		<input type="submit" name="Submit" value="Submit">
+		<input type="reset" name="reset" value="Reset"><br>
+		</form>
+	</div>
+
+
 <?php
 foreach ($homeData as $header => $list) {
 ?>
@@ -45,7 +52,7 @@ foreach ($homeData as $header => $list) {
 	foreach ($list as $data){ 
 
 	?>
-	<div class=""><a href="/search.php?<?=$data['idname']?>=<?=$data['id']?>"><?=$data['text']?></a></div>
+	<div class=""><a href="search.php?<?=$data['idname']?>=<?=$data['id']?>"><?=$data['text']?></a></div>
 
 	<?php
 	}
@@ -55,10 +62,6 @@ foreach ($homeData as $header => $list) {
 }
 ?>
 </div>
-<div class="clear"></div>
-<div id="footer">
-<p><a href="https://www.google.com" target="_blank">Terms and Conditions</a></p>
-<p><a href="https://www.google.com" target="_blank">About US</a></p>
-</div>
+<?php include("footer.php")?>
 </body>
 </html>

@@ -3,19 +3,18 @@
 require_once 'includes/global.inc.php';
 
 // Check if user is logged in
-if(isset($_SESSION['user'])) {
-    $user = $_SESSION['user'];
-    echo 'Hi , welcome to your profile!';
-    echo '<br>';
-    echo '<a href="../logout.php">Logout</a>';
-    header('location: mainPanel.html');
-
-} else {
-    echo 'You are not logged in. <br>';
-    echo '<a href="../login.php">Login</a>';
-}
-
-echo '<p></p>';
-echo '<p></p>';
-
+// if(isset($_SESSION['user'])) {
+//     $user = $_SESSION['user'];
+// }
 ?>
+<div class="header">
+	<p><a href="home.php">Home</a></p>
+	<?php
+	if($_SESSION['user']){
+		echo '<p><a href="addpost.php">New Post</a> | <a href="logout.php">Logout</a></p>';	
+	}else{
+		echo '<p><a href="login.php">Login</a> | <a href="register.php">Register</a></p>';
+	}
+	?>
+	
+</div>

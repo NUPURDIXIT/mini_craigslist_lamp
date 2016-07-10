@@ -1,16 +1,12 @@
 <?php
 
-session_start();
+require_once 'includes/global.inc.php';
 
-// if the user is logged in, unset the session
-if (isset($_SESSION['user'])) {
-   unset($_SESSION['email']);
-}
-
-session_destroy();
+$user = new User();
+$user->logout();
 
 // now that the user is logged out,
 // go to login page
-header('Location: index.html');
+header('Location: home.php');
 
 ?>

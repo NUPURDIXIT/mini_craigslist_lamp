@@ -12,12 +12,11 @@ class User{
 		$q = "SELECT * FROM Login WHERE Email = '$email' AND Password = '$passwordMd5'";
 		$query = mysql_query($q);
 		
-		echo $q; 
-		list($user) = mysql_fetch_row($query);
+		// echo $q; 
+		$user = mysql_fetch_array($query, MYSQL_ASSOC);
 
 		// If the result is empty no combination was found
 		if(empty($user)) {
-
 			return false;
 
 		} else {
@@ -26,11 +25,19 @@ class User{
 
 			// Create new session, store the user
 			$_SESSION['user'] = $user;
-			$_SESSION['email']= $email;
-
+			
 			return true;
 		
 		}		
+	}
+
+	function logout(){
+		// if the user is logged in, unset the session
+		if (isset($_SESSION['user'])) {
+		   unset($_SESSION['user']);
+		}
+
+		session_destroy();
 	}
 
 	function register($email, $password){

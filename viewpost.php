@@ -21,8 +21,8 @@
 		width: 200px;
 	}
 </style>
-
-<div>
+<?php include("header.php");?>
+<div class="content">
 	<div>
 		<?php
 		foreach($data['images'] as $imageUrl){
@@ -53,7 +53,7 @@
 	<?php
 	if($isPreview && !$data['Published']){
 	?>
-		<form action="/viewpost.php">
+		<form action="viewpost.php">
 			<input type="hidden" name="id" value="<?=$postId?>">
 			<input type="hidden" name="publish" value="1">		
 
@@ -64,3 +64,4 @@
 	?>
 
 </div>
+<?php include("footer.php");?>
