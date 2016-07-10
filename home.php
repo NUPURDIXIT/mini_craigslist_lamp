@@ -1,4 +1,5 @@
 <?php
+//home.php: Home page for site
 require_once 'includes/global.inc.php';
 
 $post = new Post();

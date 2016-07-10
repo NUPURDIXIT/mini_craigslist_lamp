@@ -1,4 +1,6 @@
 <?php
+//addpost.php: This file presents Add Post form to user. Takes input, calls Validate class for
+//validating input and calls Post class to save and publish post.
 require_once 'includes/global.inc.php';
 
 if(!$_SESSION['user']){

@@ -4,7 +4,9 @@ require_once 'DB.class.php';
 class User{
 
 
-
+	/*
+	This method is called from login.php. It checks for the validity of credentials and logs in the user.
+	*/
 	function login($email, $password){
 
 		$passwordMd5 = md5($password);
@@ -31,6 +33,9 @@ class User{
 		}		
 	}
 
+	/*
+	This method is called from logout.php. It clears session and logs out the user.
+	*/
 	function logout(){
 		// if the user is logged in, unset the session
 		if (isset($_SESSION['user'])) {
@@ -40,6 +45,10 @@ class User{
 		session_destroy();
 	}
 
+	/*
+	This method is called from register.php. It checks for the availability of email and registers
+	user.
+	*/
 	function register($email, $password){
 		// Search for a combination
 	

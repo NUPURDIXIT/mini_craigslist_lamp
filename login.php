@@ -1,5 +1,5 @@
 <?php
-//login.php
+//login.php: Login form, calls Validate class for validation and User class for logging in user.
 
 	require_once 'includes/global.inc.php';
 	

@@ -2,8 +2,11 @@
 
 class DB {
 	
+	//Database name
 	protected $db_name = 'lamp_final_project';
+	//Database username
 	protected $db_user = 'lamp';
+	//Database password
 	protected $db_pass = '1';
 	protected $db_host = 'localhost';
 	

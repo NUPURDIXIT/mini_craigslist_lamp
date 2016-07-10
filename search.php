@@ -1,5 +1,5 @@
 <?php
-//search.php
+//search.php: Implements the view of browsing functionality.
 require_once 'includes/global.inc.php';
 
 $postObj = new Post();

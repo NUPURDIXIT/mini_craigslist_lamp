@@ -1,5 +1,5 @@
 <?php
-//footer.php
+//footer.php: common file for site footer.
 ?>
 <div class="clear"></div>
 <div id="footer">

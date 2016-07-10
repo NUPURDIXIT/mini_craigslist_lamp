@@ -1,5 +1,6 @@
 <?php
-
+//register.php: Register user form. Calls Validation class to validate input and calls
+//User class to register user.
 
 	require_once 'includes/global.inc.php';
 
@@ -18,7 +19,7 @@
 
         $email = $_POST['email'];
         $password = $_POST['password'];
-        
+
         if(!$errors){
             $user = new User();
             if(!$error){

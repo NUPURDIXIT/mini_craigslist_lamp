@@ -1,5 +1,5 @@
 <?php
-//viewpost.php
+//viewpost.php: This is used in Preview and View post.
 	require_once 'includes/global.inc.php';
 
 	$post = new Post();

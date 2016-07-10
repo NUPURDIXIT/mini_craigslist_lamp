@@ -2,6 +2,10 @@
 //Validation.class.php
 class Validation{
 
+	/*
+	This method is called from addpost.php. It validated all the input fields and return related error
+	messages.
+	*/
 	function validatePostForm($data){
 		$errors = array();
 
@@ -37,6 +41,10 @@ class Validation{
 
 	}
 
+	/*
+	This method is called from register.php. It validated all the input fields and return related error
+	messages.
+	*/
 	function validateRegisterForm($data){
 
 		if(!$this->isNotBlank($data['email'])){
@@ -51,6 +59,10 @@ class Validation{
 		return $errors;
 	}
 
+	/*
+	This method is called from login.php. It validated all the input fields and return related error
+	messages.
+	*/
 	function validateLoginForm($data){
 
 		if(!$this->isNotBlank($data['email'])){
@@ -66,6 +78,9 @@ class Validation{
 	}
 
 
+	/*
+	This method validates email.
+	*/
 	function isValidEmail($email){
 		if(!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)){
 			return false;
@@ -74,6 +89,10 @@ class Validation{
 		return true;
 	}
 
+
+	/*
+	This method validates number
+	*/
 	function isValidNumber($number){
 		if (!preg_match('/^[0-9]*(\.)?[0-9]+$/', $number)) {
         	return false;
@@ -81,6 +100,9 @@ class Validation{
 		return true;
 	}
 
+	/*
+	This method checks for blank strings
+	*/
 	function isNotBlank($str){
 		if(!$str) return false;
 

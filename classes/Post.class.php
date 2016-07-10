@@ -4,6 +4,9 @@ require_once 'DB.class.php';
 
 class Post{
 
+	/*
+	addpost.php invokes this method. This method saves post in preview mode. 
+	*/
 	function createPost($data){
 
 		$title = $data['title'];
@@ -32,6 +35,9 @@ class Post{
 
 	}
 
+	/*
+	This method returns a single post. 	
+	*/
 	function getPost($postId, $isPreview){
 
 		$sql = "select * from Posts where PostId = '$postId' ";
@@ -44,6 +50,7 @@ class Post{
 
 		$result = mysql_fetch_array($query, MYSQL_ASSOC);
 
+		//Saves all four images into server directory and adds image url into returned array. 
 		for($i=1; $i<=4; $i++){
 			if($result["Image_$i"]){
 				
@@ -52,12 +59,12 @@ class Post{
 		}
 
 
-		//print_r($result);
-		//exit;
-
 		return $result;
 	}
 
+	/*
+	This is a helper method for saving image blob into server directory.
+	*/
 	function _getImageUrl($i, $result, $postId){
 		$url1 = "images/".$postId."_image$i.jpeg";
 		file_put_contents($url1, $result["Image_$i"]);
@@ -65,12 +72,22 @@ class Post{
 		return $url1;
 	}
 
+	/*
+	This method is called when user clicks on "Publish post" on the preview post page.
+	*/
 	function publishPost($postId){
 		$sql = "UPDATE Posts set Published = 1 where PostId = '$postId'";
 
 		mysql_query($sql);
 	}
 
+	/*
+	This method has core logic for all browsing activities. It has:
+		- Search on title
+		- Search by subCategoryId
+		- Search by regionId
+		- Search by locationId
+	*/
 	function search($data){
 
 		$sql = "select p.* from Posts p where Published = 1 ";
@@ -105,6 +122,10 @@ class Post{
 	}
 
 
+	/*
+	This method is used in addpost.php. It returns all the subcategories, to be showin in 
+	the subcategories dropdown.
+	*/
 	function getSubCategories(){
 		$sql = "select s.SubCategory_ID subCategoryId, s.SubCategoryName subCategoryName
 		from SubCategory s;";
@@ -118,6 +139,10 @@ class Post{
 		return $return;
 	}
 
+	/*
+	This method is used in addpost.php. It returns all the locations, to be showin in 
+	the locations dropdown.
+	*/
 	function getLocations(){
 		$sql = "select Location_ID locationId, LocationName locationName from Location;";
 
@@ -130,6 +155,9 @@ class Post{
 		return $return;
 	}
 
+	/*
+	This method is used in the home.php. It returns all the Categories, Subcategories, Regions and Locations.
+	*/
 	function getCategoriesLocations(){
 		$resultArray = array();
 
@@ -185,7 +213,9 @@ class Post{
 		return $resultArray;
 	}
 
-
+	/*
+	This method is used in image uploading. It returns binary string of image data.	
+	*/
 	function _getImageData($path){
 		return mysql_real_escape_string(file_get_contents($path));
 	}

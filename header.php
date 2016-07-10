@@ -1,11 +1,7 @@
 <?php
-
+//header.php: common file for header
 require_once 'includes/global.inc.php';
 
-// Check if user is logged in
-// if(isset($_SESSION['user'])) {
-//     $user = $_SESSION['user'];
-// }
 ?>
 <link rel="stylesheet" href="css/style.css">
 <div class="header">
