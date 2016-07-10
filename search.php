@@ -13,7 +13,7 @@ foreach ($posts as $post) {
 	<div class="searchTile">
 		<img src="<?=$post['image']?>">
 		<p><a href="viewpost.php?id=<?=$post['PostId']?>"><?=$post['Title']?></a></p>
-		<p><?=$post['Description']?></p>
+		<p><?=$post['price']?></p>
 	</div>
 <?php
 }

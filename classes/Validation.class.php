@@ -15,6 +15,10 @@ class Validation{
 			$errors['confemail'] = "Both emails should match";
 		}
 
+		if(!$this->isNotBlank($data['agreement'])){
+			$errors['agreement'] = "You must agree with Terms and Conditions";
+		}
+
 		if(!$this->isNotBlank($data['title'])){
 			$errors['title'] = "Title is required";
 		}

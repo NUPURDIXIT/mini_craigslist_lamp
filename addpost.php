@@ -34,7 +34,8 @@ $locations = $post->getLocations();
 				<?php
 				foreach ($subCategories as $subCategory) {
 				?>
-					<option value="<?=$subCategory['subCategoryId']?>"><?=$subCategory['subCategoryName']?></option>
+					<option <?=($subCategory['subCategoryId'] == $_POST['subCategoryId'])?"selected": ""?> 
+						value="<?=$subCategory['subCategoryId']?>"><?=$subCategory['subCategoryName']?></option>
 				<?php
 				}
 				?>
@@ -46,7 +47,8 @@ $locations = $post->getLocations();
 					<?php
 					foreach ($locations as $location) {
 					?>
-						<option value="<?=$location['locationId']?>"><?=$location['locationName']?></option>	
+						<option <?=($location['locationId'] == $_POST['locationId'])?"selected": ""?> 
+						value="<?=$location['locationId']?>"><?=$location['locationName']?></option>	
 					<?php
 					}
 					?>
@@ -54,7 +56,7 @@ $locations = $post->getLocations();
 		</div>
 		<div>
 			<label>Title:</label>
-			<input type="text" name="title" size="20" value="<?=$_POST['title']?>"><span class="error"><?=$errors['title']?> </span>
+			<input type="text" name="title" size="50" value="<?=$_POST['title']?>"><span class="error"><?=$errors['title']?> </span>
 		</div>
 		<div>
 			<label>Price:</label>
@@ -74,7 +76,8 @@ $locations = $post->getLocations();
 		</div>
 		<div>
 		<label>I agree with Terms and Conditions:</label>
-			<input type="checkbox" name="agreement" value="1">
+			<input type="checkbox" name="agreement" <?=($_POST['agreement'])?"checked": ""?> 
+			value="1"><span class="error"><?=$errors['agreement']?> </span>
 		</div>
 		<div>
 			<label>Optional fields:</label>

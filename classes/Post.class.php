@@ -73,7 +73,7 @@ class Post{
 
 	function search($data){
 
-		$sql = "select p.* from Posts p where 1 =1 ";
+		$sql = "select p.* from Posts p where Published = 1 ";
 
 		if($regionId = $data['regionId']){
 			$sql .= "and p.Location_ID in (SELECT l.Location_ID from Location l where l.Region_ID = $regionId) ";

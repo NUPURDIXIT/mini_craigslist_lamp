@@ -36,10 +36,14 @@ div.clear{
 	text-align: left;
 }
 img{
-	width: 200px;
+	max-width: 200px;
+	max-height: 200px;
 }
 div.searchTile{
-	padding: 20px;
+	padding: 10px;
 	float: left;
-	width: 30%;
+	width: 28%;
+	margin: 5px;
+	border: 1px gray solid;
+	height: 300px;
 }

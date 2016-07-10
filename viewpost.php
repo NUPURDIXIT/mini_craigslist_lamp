@@ -10,6 +10,7 @@
 
 	if($isPublish){
 		$post->publishPost($postId);
+		$msg = "Your post is published";
 	}
 	$data = $post->getPost($postId, $isPreview);
 
@@ -17,12 +18,13 @@
 
 ?>
 <style type="text/css">
-	img{
-		width: 200px;
-	}
+
 </style>
 <?php include("header.php");?>
 <div class="content">
+	<div class="class-label">
+        <span class="success"><?php echo $msg;?></span>
+    </div>
 	<div>
 		<?php
 		foreach($data['images'] as $imageUrl){

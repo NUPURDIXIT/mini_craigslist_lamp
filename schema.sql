@@ -44,7 +44,7 @@ create table Posts(
 	User_ID int unsigned not null,
 	SubCategory_ID int unsigned not null,
 	Location_ID int unsigned not null,	
-	Title char(20),
+	Title char(128),
 	price decimal,
 	Description text,
 	Email varchar(60) not null,
